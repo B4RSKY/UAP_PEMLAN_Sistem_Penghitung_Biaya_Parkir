@@ -33,7 +33,8 @@ public class ParkingData {
     public void setWaktuKeluar(LocalDateTime t) {
         this.waktuKeluar = t; }
 
-    public double getBiaya() { return biaya; }
+    public double getBiaya() {
+        return biaya; }
     public void setBiaya(double b) {
         this.biaya = b; }
 
