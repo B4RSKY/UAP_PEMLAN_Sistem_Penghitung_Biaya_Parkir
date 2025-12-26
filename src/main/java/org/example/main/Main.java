@@ -22,7 +22,7 @@ public class Main extends JFrame {
     private CardLayout cardLayout = new CardLayout();
     private JPanel contentPanel = new JPanel(cardLayout);
 
-    private JLabel lblAktif, lblSelesai, lblUang;
+    private JLabel labelAktif, labelSelesai, labelUang;
     private DefaultTableModel modelAktif, modelHistory;
     private Map<String, Integer> daftarTarif = new HashMap<>();
 
@@ -82,24 +82,24 @@ public class Main extends JFrame {
         subLogo.setForeground(Color.white);
         subLogo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JPanel btnContainer = new JPanel();
-        btnContainer.setLayout(new BoxLayout(btnContainer, BoxLayout.Y_AXIS));
-        btnContainer.setOpaque(false);
+        JPanel tombolContainer = new JPanel();
+        tombolContainer.setLayout(new BoxLayout(tombolContainer, BoxLayout.Y_AXIS));
+        tombolContainer.setOpaque(false);
 
-        btnContainer.add(Box.createRigidArea(new Dimension(0, 30)));
-        btnContainer.add(createSideBtn("Dashboard", "DASHBOARD"));
-        btnContainer.add(Box.createRigidArea(new Dimension(0, 5)));
-        btnContainer.add(createSideBtn("Input Masuk", "INPUT"));
-        btnContainer.add(Box.createRigidArea(new Dimension(0, 5)));
-        btnContainer.add(createSideBtn("Data Parkir", "DATA"));
-        btnContainer.add(Box.createRigidArea(new Dimension(0, 5)));
-        btnContainer.add(createSideBtn("Riwayat Transaksi", "HISTORY"));
+        tombolContainer.add(Box.createRigidArea(new Dimension(0, 30)));
+        tombolContainer.add(createSideBtn("Dashboard", "DASHBOARD"));
+        tombolContainer.add(Box.createRigidArea(new Dimension(0, 5)));
+        tombolContainer.add(createSideBtn("Input Masuk", "INPUT"));
+        tombolContainer.add(Box.createRigidArea(new Dimension(0, 5)));
+        tombolContainer.add(createSideBtn("Data Parkir", "DATA"));
+        tombolContainer.add(Box.createRigidArea(new Dimension(0, 5)));
+        tombolContainer.add(createSideBtn("Riwayat Transaksi", "HISTORY"));
 
         p.add(Box.createRigidArea(new Dimension(0, 40)));
         p.add(logo);
         p.add(subLogo);
         p.add(Box.createRigidArea(new Dimension(0, 40)));
-        p.add(btnContainer);
+        p.add(tombolContainer);
         p.add(Box.createVerticalGlue());
 
         JButton btnExit = createSideBtn("Keluar Aplikasi", "EXIT");
@@ -158,13 +158,13 @@ public class Main extends JFrame {
         JPanel statsGrid = new JPanel(new GridLayout(1, 3, 20, 0));
         statsGrid.setOpaque(false);
 
-        lblAktif = new JLabel("0");
-        lblSelesai = new JLabel("0");
-        lblUang = new JLabel("Rp 0");
+        labelAktif = new JLabel("0");
+        labelSelesai = new JLabel("0");
+        labelUang = new JLabel("Rp 0");
 
-        statsGrid.add(createStatCard("Kendaraan Parkir", lblAktif, Style.SUCCESS));
-        statsGrid.add(createStatCard("Total Transaksi", lblSelesai, Style.ACCENT));
-        statsGrid.add(createStatCard("Pendapatan Total", lblUang, Style.WARNING));
+        statsGrid.add(createStatCard("Kendaraan Parkir", labelAktif, Style.SUCCESS));
+        statsGrid.add(createStatCard("Total Transaksi", labelSelesai, Style.ACCENT));
+        statsGrid.add(createStatCard("Pendapatan Total", labelUang, Style.WARNING));
 
         JPanel topContainer = new JPanel(new BorderLayout(0, 20));
         topContainer.setOpaque(false);
@@ -229,8 +229,8 @@ public class Main extends JFrame {
         JLabel l1 = new JLabel("Plat Nomor:"); l1.setForeground(Color.BLACK);
         JLabel l2 = new JLabel("Jenis:"); l2.setForeground(Color.BLACK);
 
-        Button btnSimpan = new Button("SIMPAN DATA", Style.SUCCESS);
-        btnSimpan.setPreferredSize(new Dimension(200, 45));
+        Button tombolSimpan = new Button("SIMPAN DATA", Style.SUCCESS);
+        tombolSimpan.setPreferredSize(new Dimension(200, 45));
 
         g.gridx=0; g.gridy=0; g.gridwidth=2; card.add(title, g);
         g.gridy=1; g.gridwidth=1; card.add(l1, g);
@@ -238,9 +238,9 @@ public class Main extends JFrame {
         g.gridx=0; g.gridy=2; card.add(l2, g);
         g.gridx=1; card.add(cbJenis, g);
         g.gridx=0; g.gridy=3; g.gridwidth=2; card.add(lblInfo, g);
-        g.gridy=4; card.add(btnSimpan, g);
+        g.gridy=4; card.add(tombolSimpan, g);
 
-        btnSimpan.addActionListener(e -> {
+        tombolSimpan.addActionListener(e -> {
             try {
                 String plat = txtPlat.getText().trim().toUpperCase();
                 if(plat.isEmpty()) throw new Exception("Plat harus diisi!");
@@ -338,8 +338,8 @@ public class Main extends JFrame {
             }
         });
 
-        JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        btnPanel.setOpaque(false);
+        JPanel tombolPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        tombolPanel.setOpaque(false);
         if (type.equals("DATA")) {
             Button btnOut = new Button("Checkout / Keluar", Style.SUCCESS);
             Button btnDel = new Button("Hapus Data", Style.DANGER);
@@ -380,14 +380,14 @@ public class Main extends JFrame {
                 }
             });
 
-            btnPanel.add(btnDel);
-            btnPanel.add(btnUpd);
-            btnPanel.add(btnOut);
+            tombolPanel.add(btnDel);
+            tombolPanel.add(btnUpd);
+            tombolPanel.add(btnOut);
         }
 
         p.add(head, BorderLayout.NORTH);
         p.add(scroll, BorderLayout.CENTER);
-        p.add(btnPanel, BorderLayout.SOUTH);
+        p.add(tombolPanel, BorderLayout.SOUTH);
         return p;
     }
 
@@ -447,9 +447,9 @@ public class Main extends JFrame {
         long aktif = parkingList.stream().filter(p -> p.getStatus().equals("AKTIF")).count();
         long selesai = parkingList.stream().filter(p -> p.getStatus().equals("SELESAI")).count();
         double total = parkingList.stream().mapToDouble(ParkingData::getBiaya).sum();
-        lblAktif.setText(String.valueOf(aktif));
-        lblSelesai.setText(String.valueOf(selesai));
-        lblUang.setText(String.format("Rp %,.0f", total));
+        labelAktif.setText(String.valueOf(aktif));
+        labelSelesai.setText(String.valueOf(selesai));
+        labelUang.setText(String.format("Rp %,.0f", total));
     }
 
     private void updateTableData() {
