@@ -12,8 +12,7 @@
 ## 📖 Daftar Isi
 
 - [Fitur Utama](#-fitur-utama)
-- [Arsitektur & Struktur Kode](#-arsitektur--struktur-kode)
-- [Teknologi yang Digunakan](#-teknologi-yang-digunakan)
+- [Tools](#-tools)
 - [Persyaratan Sistem](#-persyaratan-sistem)
 - [Instalasi & Cara Menjalankan](#-instalasi--cara-menjalankan)
 - [Panduan Penggunaan](#-panduan-penggunaan)
