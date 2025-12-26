@@ -50,7 +50,10 @@ public class Main extends JFrame {
         topBar.setBackground(Color.WHITE);
         topBar.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(230,230,230)));
 
-        JLabel dateLbl = new JLabel(LocalDate.now().format(DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy")));
+        Locale indonesia = new Locale("id", "ID");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy", indonesia);
+        JLabel dateLbl = new JLabel(LocalDate.now().format(formatter));
+
         dateLbl.setFont(Style.FONT_PLAIN);
         dateLbl.setForeground(Color.BLACK);
         topBar.add(dateLbl);
