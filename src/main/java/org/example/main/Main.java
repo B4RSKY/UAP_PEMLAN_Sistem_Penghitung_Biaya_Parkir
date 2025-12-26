@@ -350,7 +350,8 @@ public class Main extends JFrame {
                 if(r == -1) {
                     JOptionPane.showMessageDialog(this, "Pilih data terlebih dahulu!", "Peringatan", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    prosesKeluar((String)table.getValueAt(table.convertRowIndexToModel(r), 0));
+                    String plat = (String)table.getValueAt(r, 0);
+                    prosesKeluar(plat);
                 }
             });
 
@@ -359,7 +360,8 @@ public class Main extends JFrame {
                 if(r == -1) {
                     JOptionPane.showMessageDialog(this, "Pilih data terlebih dahulu!", "Peringatan", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    String plat = (String)table.getValueAt(table.convertRowIndexToModel(r), 0);
+                    String plat = (String)table.getValueAt(r, 0);
+
                     int confirm = JOptionPane.showConfirmDialog(this, "Yakin ingin menghapus data " + plat + "?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if(confirm == JOptionPane.YES_OPTION) {
                         parkingList.removeIf(d -> d.getPlatNomor().equals(plat) && d.getStatus().equals("AKTIF"));
@@ -375,7 +377,8 @@ public class Main extends JFrame {
                 if(r == -1) {
                     JOptionPane.showMessageDialog(this, "Pilih data terlebih dahulu!", "Peringatan", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    String plat = (String)table.getValueAt(table.convertRowIndexToModel(r), 0);
+                    String plat = (String)table.getValueAt(r, 0);
+
                     showUpdateDialog(plat);
                 }
             });
